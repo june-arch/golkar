@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       backgroundImage: (theme) => ({
         golkar: "url('/bg-golkar-with-foto.png')",
+        'golkar-grey': "url('/bg-golkar-grey.png')",
+        'golkar-video' : "url(/bg-golkar-video.png)",
+        'footer' : "url(/footer.png)"
       }),
       fontFamily: {
         'sans': ['Roboto', 'sans-serif'],
@@ -14,6 +17,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-gradients')
+    require('tailwindcss-gradients'),
+    require('@tailwindcss/line-clamp'),
   ],
 }
