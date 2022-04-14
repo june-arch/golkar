@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Card from '../component/card'
-import News from '../component/news'
-import Video from '../component/video'
-import Maps from '../component/maps'
-import { contentOne, contentTwo, contentBerita, contentVideo } from '../utils/data'
+import Card from './component/card'
+import News from './component/news'
+import Video from './component/video'
+import Maps from './component/maps'
+import { contentOne, contentTwo, contentBerita, contentVideo } from './utils/data'
 
 const Home = ({contentOne, contentTwo, contentBerita, contentVideo}) => {
   
