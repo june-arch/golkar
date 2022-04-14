@@ -17,7 +17,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-gradients'),
     require('@tailwindcss/line-clamp'),
   ],
 }
