@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import Card from './component/card'
-import News from './component/news'
-import Video from './component/video'
-import Maps from './component/maps'
-import { Facebook, Instagram, YouTube, WhatsApp } from './component/icons'
-import { contentOne, contentTwo, contentBerita, contentVideo } from './utils/data'
+import Card from '../component/card'
+import News from '../component/news'
+import Video from '../component/video'
+import Maps from '../component/maps'
+import { contentOne, contentTwo, contentBerita, contentVideo } from '../utils/data'
 
-export default function Home() {
+const Home = ({contentOne, contentTwo, contentBerita, contentVideo}) => {
   
   return (
     <div className="flex flex-col">
@@ -124,3 +123,21 @@ export default function Home() {
     </div>
   )
 }
+
+Home.getInitialProps = async function () {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  for (const element of contentBerita) {
+    element.createdAt = element.createdAt.toString()
+  }
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    contentOne, 
+    contentTwo, 
+    contentBerita, 
+    contentVideo
+  }
+}
+
+export default Home;

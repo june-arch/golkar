@@ -1,6 +1,5 @@
 export default function News ({payload}){
     let date = new Date(payload.createdAt);
-    console.log(date)
     let formatDate = date.toLocaleString('id-ID', {day:'numeric',month:'short',year: 'numeric', hour:'2-digit', minute:'2-digit'});
     return(
         <figure className='flex flex-col basis-1/4 bg-yellow-300 rounded-xl m-2 hover:drop-shadow-lg'>
