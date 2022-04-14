@@ -1,6 +1,12 @@
 import Head from 'next/head'
+import Card from '../component/card'
+import News from '../component/news'
+import Video from '../component/video'
+import Maps from '../component/maps'
+import { contentOne, contentTwo, contentBerita, contentVideo } from '../utils/data'
 
-export default function Home() {
+const Home = ({contentOne, contentTwo, contentBerita, contentVideo}) => {
+  
   return (
     <div className="flex flex-col">
       
@@ -19,12 +25,7 @@ export default function Home() {
                 </span> 
               </div>
               <ol className='basis-1/2 flex flex-row justify-around uppercase font-sans text-slate-700 self-center'>
-                <li>Profil</li>
-                <li>Pejabat</li>
-                <li>Hasta Karya</li>
-                <li>Ormas Sayap</li>
-                <li>PPID</li>
-                <li>Lembaga</li>
+                {contentOne['nav-items'].map((value,i) => <li key={i}>{value}</li>)}
               </ol>
               <div className='basis-1/2 flex justify-around self-center'>
                 <div className="xl:w-96 self-center">
@@ -54,29 +55,89 @@ export default function Home() {
               </div>
               <div className='flex flex-col self-center mt-56'>
                 <div className='flex w-72 self-center'>
-                  <img src='kita-satu.png' alt='kita-satu' className='bg-local w-full'/>
+                  <img src={contentOne['image-kita-satu']} alt='kita-satu' className='bg-local w-full'/>
                 </div>
                 <p className='text-center w-[500px] mt-5'>
-                  Partai Golongan Karya (Partai Golkar), sebelumnya bernama Golongan Karya (Golkar) dan Sekretariat Bersama Golongan Karya (Sekber Golkar), Partai Golkar merupakan salah satu partai politik tertua di Indonesia. Partai Golkar didirikan pada tanggal 20 Oktober 1964 oleh Soeharto dan Suhardiman.
+                  {contentOne.description}
                 </p>
               </div>
             </section>
         </section>
-        <section className='flex justify-center self-center bg-yellow-200 h-96 w-[900px] m-10 rounded-2xl'>
-          <div className='grid grid-cols-2 grid-flow-row gap-4 place-items-stretch'>
-            <div className='w-full'>Tugas & Fungsi</div>
-            <div >Visi & Misi</div>
-            <div >Sejarah</div>
-            <div >Profil Pimpinan</div>
+
+        <section className='relative bg-contain bg-no-repeat bg-center h-[600px] w-[1800px] m-10'>
+          <img className='absolute inset-0 mx-auto opacity-25 -z-10' src='/bg-golkar-grey.png' width="485" height="485" alt='bg'/>
+          <div className='grid grid-cols-2 place-content-stretch rounded-2xl self-center'>
+            {contentTwo.map((item,i) => <Card key={i} payload={item} index={i}/>)}
           </div>
         </section>
-        
+
+        <section className='flex flex-col p-10'>
+          <div className='text-left text-5xl pl-4'>Berita</div>
+          <div className='text-right text-xl text-cyan-400 pr-4'>Lihat Semua</div>
+          <div className='flex justify-between items-stretch'>
+            {contentBerita.map((value, i) => <News key={i} payload={value} />)}
+          </div>
+        </section>
+
+        <section className='flex flex-col pt-20 px-20'>
+          <div className='bg-golkar-video h-[1000px] bg-contain bg-center'>
+            <div className='text-center text-5xl pt-20 pb-10'>
+              <div className='mt-10'>Mars & Hymne</div>
+              <div className=''>Partai Golkar</div>
+            </div>
+            <div className='flex justify-center px-28 py-10'>
+              {contentVideo.map((value, i) => <Video key={i} payload={value} />)}
+            </div>
+          </div>
+        </section>
+
+        <section className='flex flex-col pt-20 px-20'>
+          <div className='text-center text-5xl'>
+            <div className='mt-10'>Hubungi Kami</div>
+          </div>
+          <div id="map" className='h-[600px]'>
+            <Maps />
+          </div>
+          <div className='flex flex-row mt-10 p-10 w-full'>
+            <div className='basis-1/2 flex justify-around'>
+              <img src="./facebook.png" className='h-24 w-24' alt='fb'/>
+              <img src="./youtube.png" className='h-24 w-24' alt='yt'/>
+              <img src="./instagram.png" className='h-24 w-24' alt='ig'/>
+            </div>
+            <div className='basis-1/2 justify-center pl-20'>
+              <div className='flex flex-row bg-slate-400 rounded-full w-[470px] hover:drop-shadow-lg'>
+                <img src="./whatsapp.png" className='h-24 w-24' alt='wa'/>
+                <div className='ml-4 text-5xl self-center'>
+                  085155338389
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </main>
-      <hr className='my-5 border-t-1'/>
-      <footer className='flex justify-center'>
-        © 2022 Partai Golkar Sarolangun, All right reserved.
+      <footer className='flex justify-center bg-footer bg-cover bg-center h-20'>
+        <hr className='my-5 border-t-1'/>
+        <div className='self-center'>© 2022 Partai Golkar Sarolangun, All right reserved.</div>
       </footer>
     </div>
   )
 }
+
+Home.getInitialProps = async function () {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  for (const element of contentBerita) {
+    element.createdAt = element.createdAt.toString()
+  }
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    contentOne, 
+    contentTwo, 
+    contentBerita, 
+    contentVideo
+  }
+}
+
+export default Home;

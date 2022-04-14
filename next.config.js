@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
   reactStrictMode: true,
   webpackDevMiddleware: config => {
@@ -9,6 +11,7 @@ const nextConfig = {
 
     return config
   },
+  assetPrefix: isProd ? "/golkar/" : "",
 }
 
 module.exports = nextConfig

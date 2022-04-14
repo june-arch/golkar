@@ -6,16 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "next": "12.1.2",
     "next-images": "^1.8.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-player": "^2.10.0",
     "tailwindcss-gradients": "^3.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.3.1",
     "autoprefixer": "^10.4.4",
     "eslint": "8.12.0",
     "eslint-config-next": "12.1.2",
