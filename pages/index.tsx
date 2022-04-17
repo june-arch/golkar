@@ -1,22 +1,28 @@
-import type { GetStaticProps } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+
 import Card from '../components/card'
 import News from '../components/news'
-import Video from '../components/video'
 import Maps from '../components/maps'
-import {NavItem, VideoItem, NewsItem, CardIdiom} from '../lib/types'
+import { NavItem, VideoItem, NewsItem, CardIdiom } from '../lib/types'
 import { contentOne, contentTwo, contentBerita, contentVideo } from '../lib/data'
 import dynamic from 'next/dynamic'
+import Navbar from '../components/navbar'
+import Image from 'next/image'
+import TimeAgo from 'javascript-time-ago'
+
+import id from 'javascript-time-ago/locale/id.json'
+
+TimeAgo.addDefaultLocale(id)
 
 type Props = {
-  navItem : NavItem;
-  videoItem : VideoItem[];
-  newsItem : NewsItem[];
-  cardIdiom : CardIdiom[];
+  navItem: NavItem;
+  videoItem: VideoItem[];
+  newsItem: NewsItem[];
+  cardIdiom: CardIdiom[];
 }
 
-const Home = ({ navItem, videoItem, newsItem, cardIdiom} : Props) => {
+const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
   const Player = dynamic(() => import('../components/video'))
   return (
     <div className="flex flex-col">
@@ -27,97 +33,82 @@ const Home = ({ navItem, videoItem, newsItem, cardIdiom} : Props) => {
       </Head>
 
       <main className="flex flex-col">
-         <section className='w-full h-screen bg-golkar bg-cover bg-center'>
-          <nav className='flex flex-row py-10 px-6'>
-              <div className='basis-1/12 flex justify-end self-center'>
-                <span className='inset-y-0 right-0 border-r-2 border-white px-2'>
-                  <div className='bg-local w-14 h-14 mr-5'><Image src='/logo.png' alt='logo-golkar' height={54} width={54}/></div>
-                </span> 
+        <div className='2xl:hidden z-50 sticky top-0'>
+          <Navbar nav-items={navItem['nav-items']} />
+        </div>
+        <section className='w-full h-[52vh] sm:h-screen bg-golkar 2xl:bg-cover bg-contain bg-no-repeat 2xl:bg-center 2xl:bg-fixed z-10'>
+          <div className='hidden 2xl:block mt-6 z-50'>
+            <Navbar nav-items={navItem['nav-items']} />
+          </div>
+          <section className='flex flex-col py-10 px-10'>
+            <div className='flex flex-row justify-around'>
+              <div className="basis-1/2 font-sans sm:mt-12">
+                <span className='text-center text-2xl sm:text-9xl'>
+                  <h1>Golkar</h1>
+                  <h1>Sarolangun</h1>
+                </span>
+                <span className="text-center text-xs sm:text-xl mt-6 sm:font-bold">
+                  <a href='#'><h2 >Bergabung Menjadi Anggota</h2></a>
+                </span>
               </div>
-              <ol className='basis-1/2 flex flex-row justify-around uppercase font-sans text-slate-700 self-center'>
-                {navItem['nav-items'].map((value,i) => <li key={i}>{value}</li>)}
-              </ol>
-              <div className='basis-1/2 flex justify-around self-center'>
-                <div className="xl:w-96 self-center">
-                    <div className="flex flex-row w-full rounded">
-                      <input type="search" className="form-control flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
-                      <span className="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded" id="basic-addon2">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                          <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
+              <div className='basis-1/2'></div>
+            </div>
+            <div className='flex flex-col self-center mt-28 sm:mt-48'>
+              <div className='flex w-72 self-center'>
+                <div className='bg-local w-full'><Image src={contentOne['image-kita-satu']} alt='kita-satu' height='25' width='100%' layout='responsive' objectFit='contain' className="-z-10" /></div>
               </div>
-            </nav>
-            <section className='flex flex-col py-10 px-10'>
-              <div className='flex flex-row justify-around'>
-                <div className="basis-1/2 font-sans">
-                  <span className='text-center text-9xl'>
-                    <h1>Golkar</h1>
-                    <h1>Sarolangun</h1>
-                  </span>
-                  <span>
-                    <a href='#'><h2 className="text-center text-xl mt-6 font-bold">Bergabung Menjadi Anggota</h2></a>
-                  </span>
-                </div>
-                <div className='basis-1/2'></div>
-              </div>
-              <div className='flex flex-col self-center mt-56'>
-                <div className='flex w-72 self-center'>
-                  <div className='bg-local w-full'><Image src={contentOne['image-kita-satu']} alt='kita-satu' height='25' width='100%' layout='responsive' objectFit='contain'/></div>
-                </div>
-                <p className='text-center w-[500px] mt-5'>
-                  {contentOne.description}
-                </p>
-              </div>
-            </section>
+              <p className='text-center text-sm w-[40vh] sm:w-[500px] mt-5'>
+                {contentOne.description}
+              </p>
+            </div>
+          </section>
         </section>
 
-        <section className='relative bg-contain bg-no-repeat bg-center h-[500px] w-[1800px] m-10'>
-          <div className='absolute inset-0 mx-auto opacity-25 -z-10'><Image src='/bg-golkar-grey.png' width="480" height="120" layout='responsive' objectFit='contain' alt='bg'/></div>
-          <div className='grid grid-cols-2 place-content-stretch rounded-2xl self-center'>
-            {cardIdiom.map((item,i) => <Card key={i} payload={item} index={i}/>)}
+        <section className='xl:bg-golkar-grey bg-contain bg-no-repeat bg-center xl:h-[450px] bg-none w-full p-0 m-0 sm:px-10 mt-10 z-0'>
+          <div className='bg-white bg-opacity-75'>
+            <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-0 p-2 sm:p-0'>
+              {cardIdiom.map((item, i) => <Card key={i} payload={item} index={i} />)}
+            </div>
           </div>
         </section>
 
-        <section className='flex flex-col p-10'>
-          <div className='text-left text-5xl pl-4'>Berita</div>
-          <div className='text-right text-xl text-cyan-400 pr-4 my-5'>Lihat Semua</div>
-          <div className='flex justify-between items-stretch'>
-            {newsItem.map((value, i) => <News key={i} payload={value} />)}
+        <section className='flex flex-col sm:p-10'>
+          <div className='text-left text-2xl selection:m:text-5xl pl-4'>Berita</div>
+          <div className='text-right text-md sm:text-xl text-cyan-400 pr-4 my-5'>Lihat Semua</div>
+          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5 p-2'>
+            {newsItem.map((value, i) => <News key={i} payload={value}  />)}
           </div>
         </section>
 
         <section className='flex flex-col p-20'>
           <div className='bg-golkar-video h-[1000px] bg-contain bg-center'>
-            <div className='text-center text-5xl pt-20 pb-10'>
-              <div className='mt-10'>Mars & Hymne</div>
+            <div className='text-center sm:text-5xl text-2xl pt-20 pb-10'>
+              <div className='sm:mt-10'>Mars & Hymne</div>
               <div className=''>Partai Golkar</div>
             </div>
             <div className='flex justify-center px-28 py-10'>
-              {videoItem.map((value, i) => <Player key={i} payload={value} />)}
+              {/* {videoItem.map((value, i) => <Player key={i} payload={value} />)} */}
             </div>
           </div>
         </section>
-
-        <section className='flex flex-col px-20'>
-          <div className='text-center text-5xl'>
-            <div className='my-10'>Hubungi Kami</div>
+        
+        <section className='flex flex-col sm:px-20'>
+          <div className='text-center text-2xl sm:text-5xl'>
+            <div className='sm:my-10'>Hubungi Kami</div>
           </div>
-          <div id="map" className='h-[600px]'>
+          <div id="map" className='h-[50vh] sm:h-[60vh]'>
             <Maps />
           </div>
-          <div className='flex flex-row mt-10 p-20 w-full'>
-            <div className='basis-1/2 flex justify-around'>
-              <Image src="/facebook.png" className='bg-cover rounded-full' alt='fb' height='100' width='100' objectFit='contain'/>
-              <Image src="/youtube.png" className='bg-cover rounded-full' alt='yt' height='100' width='100' objectFit='contain'/>
-              <Image src="/instagram.png" className='bg-cover rounded-full' alt='ig' height='100' width='100' objectFit='contain'/>
+          <div className='flex flex-col sm:flex-row sm:mt-10 sm:p-20 mt-2 p-2 w-full'>
+            <div className='basis-1/2 flex flex-row justify-around'>
+              <Image src="/facebook.png" className='bg-cover rounded-full' alt='fb' height='100' width='100' objectFit='contain' />
+              <Image src="/youtube.png" className='bg-cover rounded-full' alt='yt' height='100' width='100' objectFit='contain' />
+              <Image src="/instagram.png" className='bg-cover rounded-full' alt='ig' height='100' width='100' objectFit='contain' />
             </div>
             <div className='basis-1/2 justify-center pl-20'>
-              <div className='flex flex-row bg-slate-400 rounded-full w-[470px] hover:drop-shadow-lg'>
-                <Image src="/whatsapp.png" className='bg-cover rounded-full' alt='wa' height='100' width='100' objectFit='contain'/>
-                <div className='ml-4 text-5xl self-center'>
+              <div className='flex flex-row bg-slate-400 rounded-full sm:w-[470px] hover:drop-shadow-lg'>
+                <Image src="/whatsapp.png" className='bg-cover rounded-full' alt='wa' height='100' width='100' objectFit='contain' />
+                <div className='ml-4 text-sm sm:text-5xl self-center'>
                   085155338389
                 </div>
               </div>
@@ -128,7 +119,7 @@ const Home = ({ navItem, videoItem, newsItem, cardIdiom} : Props) => {
       </main>
 
       <footer className='flex justify-center bg-footer bg-cover bg-center h-20'>
-        <hr className='my-5 border-t-1'/>
+        <hr className='my-5 border-t-1' />
         <div className='self-center'>© 2022 Partai Golkar Sarolangun, All right reserved.</div>
       </footer>
     </div>

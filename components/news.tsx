@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { NewsItem } from "../lib/types";
 
@@ -7,20 +8,27 @@ type Props = {
 
 export default function News ({payload} : Props){
     let date = new Date(payload.createdAt);
-    let formatDate = date.toLocaleString('id-ID', {day:'numeric',month:'short',year: 'numeric', hour:'2-digit', minute:'2-digit'});
+    const LastSeen = dynamic(() => import('./lastseen'))
     return(
-        <figure className='flex flex-col basis-1/4 bg-yellow-300 rounded-xl m-2 hover:drop-shadow-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300'>
-            <Image src={payload.image} alt='berita-1' height='60' width='100%' layout="responsive" className='bg-cover rounded-t-xl'/>
+        <figure className='overflow-hidden shadow-lg rounded-xl drop-shadow-lg'>
+            <div className="w-full">
+              <Image src={payload.image} alt='berita-1' height='60' width='100%' layout="responsive" className='rounded-t-xl'/>
+            </div>
             <div className='flex flex-col p-4 h-44'>
               <div className='text-lg'>{payload.title}</div>
               <p className='text-sm line-clamp-4 '>{payload.description}</p>
               <p className="pt-2 text-right">Selengkapnya</p>
             </div>
-            <div className='flex justify-between border-t-2 border-t-white p-4'>
-              <p>{payload.tags.map((value) => '#' + value)}</p>
-              <div className='flex flex-col'>
+            <div className='flex justify-between p-4'>
+              {/* <p className="grid">{payload.tags.map((value) => '#' + value)}</p> */}
+              <div className="p-0">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#fall</span>
+              </div>
+              <div className='flex flex-col text-right'>
                 <div className='text-sm'>{payload.author}</div>
-                <p className='text-sm'>{formatDate}</p>
+                <div className='text-sm'><LastSeen date={date} /></div>
               </div>
             </div>
         </figure>
