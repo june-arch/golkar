@@ -12,9 +12,12 @@ export default function Card({payload, index} : Props) {
     let classTitle =  index % 2 == 0 ? '' : 'text-right';
     let classMore = index % 2 == 0 ?  'text-left' : 'text-right';
     let classImgPosition = index % 2 == 0 ? false : true;
+
   return (
-    <figure className="flex border-4 border-white p-8 md:p-0">
-        {classImgPosition == false && <Image className="basis-1/4" src={payload.image} alt="" width="200" height="200" />}
+    <figure className="flex flex-col sm:flex-row sm:border-4 border-white">
+        <div className={`${classImgPosition == false ? 'sm:flex' : 'sm:hidden self-end'}`}>
+            <Image src={payload.image} alt={`${payload.title}`} className="z-0" width="200" height="200" />
+        </div>   
         <div className="flex flex-col justify-between basis-3/4 pt-6 p-8">
             <div className={'text-lg font-bold '+classTitle}>
                 {payload.title}
@@ -26,7 +29,9 @@ export default function Card({payload, index} : Props) {
                 </div>
             </figcaption>
         </div>
-        {classImgPosition == true && <Image className="basis-1/4" src={payload.image} alt="" width="200" height="200" />}
+        <div className={`${classImgPosition == true ? 'sm:flex' : 'sm:hidden'} hidden`}>
+            <Image className="z-0" src={payload.image} alt={`${payload.title}`} width="200" height="200" />
+        </div>
     </figure>
   )
 }
