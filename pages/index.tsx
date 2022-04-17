@@ -87,7 +87,7 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
               <div className=''>Partai Golkar</div>
             </div>
             <div className='flex justify-center px-28 py-10'>
-              {/* {videoItem.map((value, i) => <Player key={i} payload={value} />)} */}
+              {videoItem.map((value, i) => <Player key={i} payload={value} />)}
             </div>
           </div>
         </section>
