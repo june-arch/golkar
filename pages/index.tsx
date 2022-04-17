@@ -87,7 +87,7 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
               <div className=''>Partai Golkar</div>
             </div>
             <div className='flex justify-center px-28 py-10'>
-              {videoItem.map((value, i) => <Player key={i} payload={value} />)}
+              {/* {videoItem.map((value, i) => <Player key={i} payload={value} />)} */}
             </div>
           </div>
         </section>
@@ -99,15 +99,15 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
           <div id="map" className='h-[50vh] sm:h-[60vh]'>
             <Maps />
           </div>
-          <div className='flex flex-col sm:flex-row sm:mt-10 sm:p-20 mt-2 p-2 w-full'>
-            <div className='basis-1/2 flex flex-row justify-around'>
-              <Image src="/facebook.png" className='bg-cover rounded-full' alt='fb' height='100' width='100' objectFit='contain' />
-              <Image src="/youtube.png" className='bg-cover rounded-full' alt='yt' height='100' width='100' objectFit='contain' />
-              <Image src="/instagram.png" className='bg-cover rounded-full' alt='ig' height='100' width='100' objectFit='contain' />
+          <div className='flex flex-col sm:flex-row sm:mt-10 sm:p-20 mt-2 p-4 w-full'>
+            <div className='basis-1/2 flex flex-row sm:justify-around justify-between px-5 py-2'>
+              <div className='h-12 w-12 sm:h-24 sm:w-24'><Image src="/facebook.svg" className='bg-cover rounded-full' alt='fb' height='100' width='100' objectFit='contain' /></div>
+              <div className='h-12 w-12 sm:h-24 sm:w-24'><Image src="/youtube.svg" className='bg-cover rounded-full' alt='yt' height='100' width='100' objectFit='contain' /></div>
+              <div className='h-12 w-12 sm:h-24 sm:w-24'><Image src="/instagram.svg" className='bg-cover rounded-full' alt='ig' height='100' width='100' objectFit='contain' /></div>
             </div>
-            <div className='basis-1/2 justify-center pl-20'>
+            <div className='basis-1/2 justify-center sm:pl-20 p-4'>
               <div className='flex flex-row bg-slate-400 rounded-full sm:w-[470px] hover:drop-shadow-lg'>
-                <Image src="/whatsapp.png" className='bg-cover rounded-full' alt='wa' height='100' width='100' objectFit='contain' />
+                <div className='h-12 w-12 sm:h-24 sm:w-24'><Image src="/whatsapp.svg" className='bg-cover rounded-full' alt='wa' height='100' width='100' objectFit='contain' /></div>
                 <div className='ml-4 text-sm sm:text-5xl self-center'>
                   085155338389
                 </div>
