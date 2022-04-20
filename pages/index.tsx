@@ -130,7 +130,7 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
             </div>
             <div className='basis-1/2 justify-center self-center md:pl-20 p-4'>
               <div className=' cursor-pointer'>
-                <Link href="https://wa.me/085155338389?text=Hello Saya ingin bertanya ?">
+                <Link href="https://wa.me/081379693637?text=Hello Saya ingin bertanya ?">
                   <a>
                     <div className='flex flex-row bg-slate-200 rounded-full w-[34vh] sm:w-[26vh] md:w-[36vh] lg:w-[47vh] hover:drop-shadow-lg'>
                       <div className='h-12 w-12 md:h-16 md:w-16 lg:h-24 lg:w-24'><Image src="/whatsapp.svg" className='bg-cover rounded-full' alt='wa' height='100' width='100' objectFit='contain' /></div>
