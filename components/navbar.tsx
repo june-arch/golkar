@@ -23,8 +23,8 @@ function MobileNav({ open, setOpen, navItems }: MobileNavProps) {
   return (
     <div className={`z-50 absolute top-0 left-0 h-screen w-screen bg-white transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
       <div className="flex items-center justify-center filter drop-shadow-md bg-white h-32"> {/*logo container*/}
-        <div className="text-xl font-semibold" >
-          <Link href="/" passHref={true}><div className='bg-local w-16 h-16 mr-5'><Image src='/logo.png' alt='logo-golkar' className="z-40" height={104} width={104} /></div></Link>
+        <div className="text-xl font-semibold cursor-pointer" >
+          <Link href="/"><a><div className='bg-local w-16 h-16 mr-5'><Image src='/logo.png' alt='logo-golkar' className="z-40" height={104} width={104} /></div></a></Link>
         </div>
       </div>
       <div className="flex flex-col mx-6">
@@ -49,8 +49,8 @@ export default function Navbar(navItems: Props) {
     <nav className='flex flex-row py-8 px-6 2xl:bg-opacity-0 bg-yellow-300'>
       <MobileNav open={open} setOpen={setOpen} navItems={navItems}/>
       <div className='basis-1/12 flex justify-end self-center'>
-        <span className={`border-r-2 border-black sm:border-white px-2`}>
-          <div className='bg-local w-14 h-14 sm:mr-5 mr-1'><Image src='/logo.png' alt='logo-golkar' className="z-0" height={54} width={54} /></div>
+        <span className={`border-r-2 border-black sm:border-white px-2 cursor-pointer`}>
+          <Link href='/'><a><div className='bg-local w-14 h-14 sm:mr-5 mr-1'><Image src='/logo.png' alt='logo-golkar' className="z-0" height={54} width={54} /></div></a></Link>
         </span>
       </div>
       <ol className='hidden xl:basis-1/2 md:basis-11/12 md:flex flex-row justify-around uppercase font-sans text-slate-700 self-center'>
