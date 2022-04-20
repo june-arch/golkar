@@ -18,7 +18,6 @@ export type NewsItem = {
 export type VideoItem = {
     path : string;
     tag : string;
-    img: string;
 }
 
 export type NavItem = {

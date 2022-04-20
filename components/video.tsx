@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ReactPlayer from "react-player/lazy";
+import ReactPlayer from "react-player/youtube";
 import { VideoItem } from "../lib/types"
 
 type Props = {
@@ -8,8 +8,8 @@ type Props = {
 
 export default function Video ({payload} : Props){
     return(
-        <div className='flex flex-grow p-2'>
-            <ReactPlayer url={[payload.path,'video/mp4']} light={payload.img} controls/>
+        <div className='flex flex-col m-2 w-full'>
+            <ReactPlayer url={payload.path} />
         </div>
     )
 }

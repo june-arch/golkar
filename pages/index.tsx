@@ -47,12 +47,13 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
             <div className='flex flex-row justify-around'>
               <div className="basis-1/2 font-sans sm:mt-12">
                 <span className='text-center text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-9xl'>
-                  <h1>Golkar</h1>
-                  <h1>Sarolangun</h1>
+                  <h1>Golkar Sarolangun</h1>
                 </span>
-                <span className="text-center text-xs sm:text-md 2xl:text-2xl mt-6 sm:font-bold cursor-pointer">
-                  <h2><Link href='#'><a>Bergabung Menjadi Anggota</a></Link></h2>
-                </span>
+		<span className="text-center text-xs sm:text-md 2xl:text-2xl mt-6 sm:font-bold cursor-pointer">
+                <Link href='#'><button className="w-full h-10 px-3 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">
+		Bergabung Menjadi Anggota
+		</button></Link>
+		</span>
               </div>
               <div className='basis-1/2'></div>
             </div>
