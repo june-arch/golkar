@@ -8,7 +8,7 @@ type Props = {
 
 export default function Video ({payload} : Props){
     return(
-        <div className='flex flex-col m-2 w-full'>
+        <div className='flex m-0.5 w-full'>
             <ReactPlayer url={payload.path} />
         </div>
     )
