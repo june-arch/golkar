@@ -8,7 +8,7 @@ type Props = {
 
 export default function News ({payload} : Props){
     let date = new Date(payload.createdAt);
-    const LastSeen = dynamic(() => import('./lastseen'))
+    const LastSeen = dynamic(() => import('./Lastseen'))
     return(
         <figure className='overflow-hidden shadow-lg rounded-xl drop-shadow-lg'>
             <div className="w-full">

@@ -1,13 +1,15 @@
 
 import Image from 'next/image'
 import { CardIdiom } from '../lib/types';
+import React from 'react'
 
 type Props = {
     payload : CardIdiom;
     index : number;
 }
 
-export default function Card({payload, index} : Props) {
+const Card = (props : Props) => {
+    const {payload, index} = props
     let classPosistion = index % 2 == 0 ? 'pl-6' : 'pr-6';
     let classTitle =  index % 2 == 0 ? '' : 'text-right';
     let classMore = index % 2 == 0 ?  'text-left' : 'text-right';
@@ -35,3 +37,5 @@ export default function Card({payload, index} : Props) {
     </figure>
   )
 }
+
+export default Card;

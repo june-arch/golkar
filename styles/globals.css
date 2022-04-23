@@ -8,3 +8,35 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+@layer utilities {
+  .last-child-custom:nth-last-of-type(1) > ol,
+  .last-child-custom:nth-last-of-type(2) > ol, 
+  .last-child-custom:nth-last-of-type(3) > ol{
+    @apply right-[20%]
+  }
+  .last-child-custom:nth-last-of-type(1) > ol > div.child-custom,
+  .last-child-custom:nth-last-of-type(2) > ol > div.child-custom, 
+  .last-child-custom:nth-last-of-type(3) > ol > div.child-custom{
+    @apply flex pr-2 justify-end
+  }
+
+  .last-child-custom:nth-of-type(1) > ol,
+  .last-child-custom:nth-of-type(2) > ol, 
+  .last-child-custom:nth-of-type(3) > ol,
+  .last-child-custom:nth-of-type(4) > ol{
+    @apply left-[10%]
+  }
+  .last-child-custom:nth-of-type(1) > ol > div.child-custom,
+  .last-child-custom:nth-of-type(2) > ol > div.child-custom, 
+  .last-child-custom:nth-of-type(3) > ol > div.child-custom,
+  .last-child-custom:nth-of-type(4) > ol > div.child-custom{
+    @apply flex pl-2 justify-start
+  }
+  .last-child-custom:nth-last-of-type(1) > ol > div.child-custom-second > li > ol,
+  .last-child-custom:nth-last-of-type(2) > ol > div.child-custom-second > li > ol, 
+  .last-child-custom:nth-last-of-type(3) > ol > div.child-custom-second > li > ol{
+    @apply md:right-full md:left-auto xl:right-auto xl:left-full
+  }
+  
+}
