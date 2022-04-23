@@ -20,8 +20,18 @@ export type VideoItem = {
     tag : string;
 }
 
+type SubMenus = {
+    subMenuName : string;
+    subSubMenu : string[];
+}
+
+export type Menus = {
+    menu : string;
+    subMenu: SubMenus[];
+}
+
 export type NavItem = {
-    'nav-items' : string[];
+    'nav-items' : Menus[];
     description : string;
     'image-kita-satu': string;
 }

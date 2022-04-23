@@ -1,12 +1,12 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 
-import Card from '../components/card'
-import News from '../components/news'
+import Card from '../components/Card'
+import News from '../components/News'
 import { NavItem, VideoItem, NewsItem, CardIdiom } from '../lib/types'
 import { contentOne, contentTwo, contentBerita, contentVideo } from '../lib/data'
 import dynamic from 'next/dynamic'
-import Navbar from '../components/navbar'
+import Navbar from '../components/Navbar'
 import Image from 'next/image'
 import TimeAgo from 'javascript-time-ago'
 
@@ -25,8 +25,8 @@ type Props = {
 }
 
 const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
-  const Player = dynamic(() => import('../components/video'))
-  const Maps = dynamic(() => import('../components/maps'))
+  const Player = dynamic(() => import('../components/Video'))
+  const Maps = dynamic(() => import('../components/Maps'))
   return (
     <div className="flex flex-col">
       <Head>
@@ -49,11 +49,11 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
                 <span className='text-center text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-9xl'>
                   <h1>Golkar Sarolangun</h1>
                 </span>
-		<span className="text-center text-xs sm:text-md 2xl:text-2xl mt-6 sm:font-bold cursor-pointer">
-                <Link href='#'><button className="w-full h-10 px-3 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">
-		Bergabung Menjadi Anggota
-		</button></Link>
-		</span>
+                <span className="text-center text-xs sm:text-md 2xl:text-2xl mt-6 sm:font-bold cursor-pointer">
+                  <Link href='#'><button className="w-full h-10 px-3 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">
+                    Bergabung Menjadi Anggota
+                  </button></Link>
+                </span>
               </div>
               <div className='basis-1/2'></div>
             </div>
@@ -85,12 +85,12 @@ const Home: NextPage<Props> = ({ navItem, videoItem, newsItem, cardIdiom }) => {
         </section>
 
         <section className='2xl:p-20'>
-          <div className='2xl:bg-golkar-video 2xl:h-[1000px] bg-contain bg-center md:flex md:flex-col md:items-center md:self-center'>
+          <div className='2xl:bg-golkar-video 2xl:h-[1000px] bg-contain bg-center 2xl:flex 2xl:flex-col 2xl:items-center 2xl:self-center'>
             <div className='text-center text-2xl sm:text-3xl md:text4xl lg:text-5xl 2xl:pt-20 pb-10'>
               <div className='sm:mt-10'>Mars & Hymne</div>
               <div className=''>Partai Golkar</div>
             </div>
-            <div className='flex flex-col xl:flex-row p-4 2xl:px-36'>
+            <div className='flex flex-col 2xl:flex-row p-4 2xl:px-36'>
               {videoItem.map((value, i) => <Player key={i} payload={value} />)}
             </div>
           </div>
