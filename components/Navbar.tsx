@@ -25,7 +25,7 @@ export default function Navbar(navItems: Data) {
                 {navItems['nav-items'].map((value, i) => {
                     return (
                         <li className="group cursor-pointer relative last-child-custom" key={i}>
-                            <div className="md:text-xs lg:text-sm whitespace-nowrap">
+                            <div className="md:text-xs lg:text-sm whitespace-nowrap transition-transform group-hover:scale-105 duration-300 transform">
                                 <span>{value.menu}</span>
                                 <svg fill="currentColor" viewBox="0 0 20 20" className={`${value.subMenu.length > 0 ? '' : 'hidden'} inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 group-hover:rotate-180`}><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             </div>
